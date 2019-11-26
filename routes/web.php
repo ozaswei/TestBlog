@@ -31,7 +31,11 @@ Route::group(['namespace' => 'frontend'],function(){
 
 Route::group(['prefix'=>Config::get('site.admin'),'namespace'=>'backend'],function(){
 
-    Route::get('/','BackendController@index');
+    Route::get('/','BackendController@index')->name('admin-dashboard');
+    Route::group(['prefix'=>'news'],function(){
+        Route::get('/','BackendController@news');
+        Route::get('/add','BackendController@addnews')->name('add-news');
+    });
 });
 
 
